@@ -56,19 +56,19 @@ const feedbacks = [
     name: "Aira M.",
     location: "Iloilo",
     message:
-      "Dali lang kausap sa Messenger, madasig man ang delivery. Legit gid ang produkto.",
+      "Madili lang kausap sa Messenger si madam, dasig man ang delivery. Legit!",
   },
   {
     name: "Jen R.",
     location: "Guimaras",
     message:
-      "Balik-balik ko diri kay reseller ako—pareho ang kalidad kag presyo, wala sang sinyas nga palpak.",
+      "GA Balik balik ko lang di kay reseller ko nami quality kag tas barato lang kumpara sa iban.",
   },
   {
     name: "Camille T.",
     location: "Iloilo City",
     message:
-      "Maayo ang packaging kag responsive ang seller. Sulit gid para sa skincare routine ko.",
+      "Maayo ang packaging kag responsive ang seller. Sulit gid para sa skincare routine ko hehe.",
   },
 ];
 
@@ -105,7 +105,7 @@ export default function Home() {
               MLM Skincare is a trusted distributor focused on premium
               skincare and beauty essentials. We work with quality-tested products
               and support customers, resellers, and beauty businesses with smooth
-              ordering through Facebook. We proudly serve branches in{" "}
+              orders. We proudly serve branches in{" "}
               {storeInfo.branches.join(" and ")}.
             </p>
           </div>
@@ -210,81 +210,74 @@ export default function Home() {
                 <p className="mt-4 max-w-xl text-sm leading-6 text-stone-600">
                   Fastest replies are usually on{" "}
                   <span className="font-medium text-stone-700">Messenger</span>. For calls or
-                  texts, use the number on the right.
+                  texts, use the provided number.
                 </p>
               </div>
 
-              <div className="rounded-3xl border border-rose-100/90 bg-white/85 p-6 shadow-[0_14px_44px_-38px_rgba(136,19,55,0.55)] backdrop-blur-sm">
+              <aside className="rounded-[1.75rem] border border-rose-100/95 bg-white/90 p-6 shadow-[0_20px_44px_-36px_rgba(136,19,55,0.55)] backdrop-blur-sm md:p-7">
                 <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-700">
                   Store details
                 </h3>
-                <dl className="mt-5 space-y-6">
-                  <div>
-                    <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="h-4 w-4 text-rose-700"
-                        aria-hidden="true"
-                      >
+                <div className="mt-5 space-y-4">
+                  <article className="rounded-2xl border border-rose-100 bg-gradient-to-b from-white to-rose-50/30 p-4">
+                    <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-rose-700" aria-hidden="true">
                         <path
-                          d="M6.6 2h10.8c1 0 1.8.8 1.8 1.8v16.7c0 .7-.8 1.1-1.3.7l-3.7-2.8-3.2 2.4a.8.8 0 01-1 0L6.3 18.4 2.8 21.1c-.5.4-1.3 0-1.3-.7V3.8C1.5 2.8 2.3 2 3.3 2h3.3z"
+                          d="M6.6 10.8a15.6 15.6 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.2 11.2 0 003.5.56 1 1 0 011 1V20a1 1 0 01-1 1C10.3 21 3 13.7 3 4a1 1 0 011-1h3.5a1 1 0 011 1 11.2 11.2 0 00.56 3.5 1 1 0 01-.24 1l-2.27 2.3z"
                           fill="currentColor"
                         />
                       </svg>
-                      Mobile
-                    </dt>
-                    <dd className="mt-2">
+                      Mobile number
+                    </div>
+                    <div className="mt-2">
                       {phoneDigits ? (
                         <a
                           href={`tel:${phoneTel}`}
                           aria-label={`Call or text ${phoneDisplay}`}
-                          className="group inline-flex cursor-pointer rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
+                          className="group inline-flex rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
                         >
-                          <span className="font-sans text-2xl font-semibold tabular-nums tracking-tight text-rose-950 underline decoration-rose-200 underline-offset-[6px] transition-colors group-hover:text-rose-800 group-hover:decoration-rose-400">
+                          <span className="font-sans text-[1.7rem] font-semibold tabular-nums tracking-tight text-rose-950 transition-colors group-hover:text-rose-800">
                             {phoneDisplay}
                           </span>
                         </a>
                       ) : (
-                        <p className="font-sans text-2xl font-semibold tabular-nums tracking-tight text-rose-950">
+                        <p className="font-sans text-[1.7rem] font-semibold tabular-nums tracking-tight text-rose-950">
                           {phoneDisplay}
                         </p>
                       )}
-                    </dd>
-                  </div>
-                  <div>
-                    <dt className="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-stone-500">
-                      <svg
-                        viewBox="0 0 24 24"
-                        className="h-4 w-4 text-rose-700"
-                        aria-hidden="true"
-                      >
+                    </div>
+                  </article>
+
+                  <article className="rounded-2xl border border-rose-100 bg-gradient-to-b from-white to-amber-50/35 p-4">
+                    <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-500">
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 text-rose-700" aria-hidden="true">
                         <path
                           d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"
                           fill="currentColor"
                         />
                       </svg>
                       Address
-                    </dt>
-                    <dd className="mt-2 space-y-2 text-sm leading-6 text-stone-700">
-                      <p>{storeInfo.locationText}</p>
-                      <a
-                        href={storeInfo.mapUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex min-h-10 cursor-pointer items-center gap-2 rounded-full border border-rose-200 bg-rose-50/80 px-4 py-2 text-sm font-semibold text-rose-900 transition-colors duration-200 hover:border-rose-300 hover:bg-rose-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
-                      >
-                        <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
-                          <path
-                            d="M12 2C8.1 2 5 5.1 5 9c0 4.5 5.2 11.2 6.7 13.1.2.2.5.3.8.3s.6-.1.8-.3C14.8 20.2 20 13.5 20 9c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"
-                            fill="currentColor"
-                          />
-                        </svg>
-                        View in Google Maps
-                      </a>
-                    </dd>
-                  </div>
-                </dl>
-              </div>
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-stone-700">
+                      {storeInfo.locationText}
+                    </p>
+                    <a
+                      href={storeInfo.mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-3 inline-flex min-h-10 items-center gap-2 rounded-full border border-rose-200 bg-white px-4 py-2 text-xs font-semibold uppercase tracking-wide text-rose-900 transition-colors duration-200 hover:border-rose-300 hover:bg-rose-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
+                    >
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
+                        <path
+                          d="M12 2C8.1 2 5 5.1 5 9c0 4.5 5.2 11.2 6.7 13.1.2.2.5.3.8.3s.6-.1.8-.3C14.8 20.2 20 13.5 20 9c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                      View on Google Maps
+                    </a>
+                  </article>
+                </div>
+              </aside>
             </div>
           </div>
         </section>
