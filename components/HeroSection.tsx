@@ -1,0 +1,81 @@
+"use client";
+
+import { motion } from "framer-motion";
+
+type HeroSectionProps = {
+  brandName: string;
+  orderUrl: string;
+};
+
+export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
+  return (
+    <section id="home" className="relative overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(251,207,232,0.3),_transparent_45%),radial-gradient(circle_at_bottom_left,_rgba(251,191,36,0.12),_transparent_40%)]" />
+      <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-5 pb-20 pt-16 sm:px-8 md:grid-cols-[1.1fr_0.9fr] md:items-center md:pb-24 md:pt-24">
+        <motion.div
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
+          className="space-y-6"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700">
+            Authorized Beauty Distributor
+          </p>
+          <h1 className="max-w-xl font-serif text-4xl leading-tight text-rose-950 sm:text-5xl md:text-6xl">
+            {brandName}
+          </h1>
+          <h2 className="max-w-xl text-xl font-medium leading-relaxed text-stone-800 sm:text-2xl">
+            Premium Beauty Products for Radiant Skin
+          </h2>
+          <p className="max-w-xl text-base leading-7 text-stone-600 sm:text-lg">
+            Curated skincare and beauty essentials trusted by resellers and
+            everyday customers across the Philippines.
+          </p>
+          <div className="flex flex-wrap items-center gap-3 pt-2">
+            <a
+              href="#products"
+              className="rounded-full bg-rose-900 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-rose-800"
+            >
+              View Products
+            </a>
+            <a
+              href={orderUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-rose-200 bg-white px-6 py-3 text-sm font-semibold text-rose-900 transition-all duration-300 hover:-translate-y-0.5 hover:border-rose-300 hover:bg-rose-50"
+            >
+              Message us on Facebook
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, scale: 0.96 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
+          className="relative min-h-72 overflow-hidden rounded-[2.25rem] border border-rose-100 bg-gradient-to-br from-rose-50 via-white to-amber-50 p-8 shadow-[0_20px_60px_-35px_rgba(136,19,55,0.4)] sm:min-h-80"
+        >
+          <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-rose-200/40 blur-2xl" />
+          <div className="absolute -bottom-10 -left-4 h-36 w-36 rounded-full bg-amber-200/30 blur-2xl" />
+          <div className="relative flex h-full flex-col justify-between">
+            <p className="font-serif text-3xl text-rose-900">Glow with Confidence</p>
+            <p className="max-w-xs text-sm leading-6 text-stone-600">
+              Wholesale-ready selections, quality-controlled products, and fast
+              messenger ordering support for your beauty business.
+            </p>
+            <div className="mt-8 grid grid-cols-2 gap-3 text-sm">
+              <div className="rounded-2xl border border-rose-100 bg-white/75 p-4">
+                <p className="font-semibold text-rose-900">100%</p>
+                <p className="text-stone-600">Authentic stocks</p>
+              </div>
+              <div className="rounded-2xl border border-rose-100 bg-white/75 p-4">
+                <p className="font-semibold text-rose-900">Nationwide</p>
+                <p className="text-stone-600">Delivery support</p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
