@@ -56,19 +56,19 @@ const feedbacks = [
     name: "Aira M.",
     location: "Iloilo",
     message:
-      "Madili lang kausap sa Messenger si madam, dasig man ang delivery. Legit!",
+      "Madili lang kausap sa Messenger, dasig man ang delivery nila",
   },
   {
     name: "Jen R.",
     location: "Guimaras",
     message:
-      "GA Balik balik ko lang di kay reseller ko nami quality kag tas barato lang kumpara sa iban.",
+      "GA Balik balik lang ko di kay reseller man ko nami quality kag barato compare sa iban.",
   },
   {
     name: "Camille T.",
     location: "Iloilo City",
     message:
-      "Maayo ang packaging kag responsive ang seller. Sulit gid para sa skincare routine ko hehe.",
+      "Nami ila packaging kag responsive ang seller. Sulit gid sa skincare routine ko hehe.",
   },
 ];
 
