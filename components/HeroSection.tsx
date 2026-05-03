@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useState } from "react";
 
 type HeroSectionProps = {
   brandName: string;
@@ -14,6 +15,11 @@ const softRise = {
 
 export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
   const reduceMotion = useReducedMotion();
+  const [copyAnimDone, setCopyAnimDone] = useState(false);
+  const [cardAnimDone, setCardAnimDone] = useState(false);
+  const motionDebug =
+    typeof process !== "undefined" &&
+    process.env.NEXT_PUBLIC_MOTION_DEBUG === "1";
 
   return (
     <section id="home" className="relative overflow-hidden">
@@ -41,6 +47,7 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
               <motion.p
                 {...softRise}
                 transition={{ duration: 0.45, ease: "easeOut", delay: 0 }}
+                onAnimationComplete={() => setCopyAnimDone(true)}
                 className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700"
               >
                 Authorized Beauty Distributor
@@ -137,6 +144,7 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
             initial={{ y: 18, opacity: 1, scale: 0.985 }}
             animate={{ y: 0, opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, ease: "easeOut", delay: 0.06 }}
+            onAnimationComplete={() => setCardAnimDone(true)}
             className="relative z-10 min-h-72 overflow-hidden rounded-[2.25rem] border border-rose-100 bg-gradient-to-br from-rose-50 via-white to-amber-50 p-8 shadow-[0_20px_60px_-35px_rgba(136,19,55,0.4)] sm:min-h-80"
           >
             <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-rose-200/40 blur-2xl" />
@@ -161,6 +169,17 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
           </motion.div>
         )}
       </div>
+      {motionDebug ? (
+        <div
+          className="fixed bottom-2 right-2 z-[10000] max-w-[92vw] rounded-lg border border-sky-300 bg-sky-50/95 px-2 py-1 font-mono text-[10px] leading-snug text-sky-950 shadow-lg"
+          aria-live="polite"
+        >
+          <div>NEXT_PUBLIC_MOTION_DEBUG=1</div>
+          <div>reducedMotion: {String(reduceMotion)}</div>
+          <div>copyAnimDone: {String(copyAnimDone)}</div>
+          <div>cardAnimDone: {String(cardAnimDone)}</div>
+        </div>
+      ) : null}
     </section>
   );
 }
