@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
 type HeroSectionProps = {
   brandName: string;
@@ -8,14 +8,18 @@ type HeroSectionProps = {
 };
 
 export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
+  const reduceMotion = useReducedMotion();
+
   return (
     <section id="home" className="relative overflow-hidden">
       <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,_rgba(251,207,232,0.3),_transparent_45%),radial-gradient(circle_at_bottom_left,_rgba(251,191,36,0.12),_transparent_40%)]" />
       <div className="relative mx-auto grid w-full max-w-6xl gap-12 px-5 pb-20 pt-16 sm:px-8 md:grid-cols-[1.1fr_0.9fr] md:items-center md:pb-24 md:pt-24">
         <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+          animate={reduceMotion ? false : { opacity: 1, y: 0 }}
+          transition={
+            reduceMotion ? { duration: 0 } : { duration: 0.5, ease: "easeOut" }
+          }
           className="space-y-6"
         >
           <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700">
@@ -50,9 +54,13 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.55, ease: "easeOut", delay: 0.1 }}
+          initial={reduceMotion ? false : { opacity: 0, scale: 0.96 }}
+          animate={reduceMotion ? false : { opacity: 1, scale: 1 }}
+          transition={
+            reduceMotion
+              ? { duration: 0 }
+              : { duration: 0.55, ease: "easeOut", delay: 0.1 }
+          }
           className="relative min-h-72 overflow-hidden rounded-[2.25rem] border border-rose-100 bg-gradient-to-br from-rose-50 via-white to-amber-50 p-8 shadow-[0_20px_60px_-35px_rgba(136,19,55,0.4)] sm:min-h-80"
         >
           <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-rose-200/40 blur-2xl" />
