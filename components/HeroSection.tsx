@@ -14,7 +14,8 @@ const softRise = {
 };
 
 export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotionRaw = useReducedMotion();
+  const reduceMotion = Boolean(reduceMotionRaw);
   const [copyAnimDone, setCopyAnimDone] = useState(false);
   const [cardAnimDone, setCardAnimDone] = useState(false);
   const motionDebug =
