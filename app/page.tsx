@@ -165,7 +165,7 @@ export default function Home() {
 
         <section id="contact" className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
           <div className="overflow-hidden rounded-[2rem] border border-rose-100 bg-gradient-to-br from-rose-100/55 via-white to-amber-100/35 p-8 shadow-[0_18px_50px_-36px_rgba(136,19,55,0.45)] md:p-12">
-            <div className="rounded-[1.5rem] border border-rose-100/80 bg-white/95 p-6 shadow-[0_16px_44px_-40px_rgba(136,19,55,0.45)] backdrop-blur-sm md:p-10">
+            <div className="rounded-[1.5rem] bg-white/95 p-6 shadow-[0_16px_44px_-40px_rgba(136,19,55,0.45)] backdrop-blur-sm md:p-10">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700">
                 Contact / Order
               </p>

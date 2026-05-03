@@ -69,6 +69,30 @@ Capture on the device:
 - Create a **minimal repro** route (no Tailwind, single `motion.div`) to bisect Framer Motion vs CSS vs Next bundling.
 - Consider a feature flag: `DISABLE_HERO_MOTION` for emergency rollout.
 
+## 2026-05-03 addendum: hydration mismatch found during debug
+
+During later debugging we hit a concrete React hydration mismatch in dev:
+
+- Browser error: `Hydration failed because the server rendered text didn't match the client.`
+- Impact: interactive UI became unreliable (menu taps and motion callbacks looked dead/non-deterministic).
+
+What caused it in this codebase:
+
+- A debug-only motion badge rendered `useReducedMotion()` directly.
+- On some first paints the value shape differed between server/client, so rendered text did not match (`null` vs boolean-like state in diagnostics).
+
+Fix applied:
+
+- Normalize reduced-motion diagnostics to a stable boolean before rendering:
+  - `const reduceMotionRaw = useReducedMotion();`
+  - `const reduceMotion = Boolean(reduceMotionRaw);`
+
+Lessons for future debugging:
+
+- Keep debug overlays hydration-safe (avoid rendering potentially unstable values directly).
+- If UI feels “randomly dead,” check terminal/browser for hydration mismatch before chasing CSS/touch bugs.
+- When adding instrumentation to client components, ensure first server HTML and first client render can match.
+
 ## Definition of done
 
 - Reliable hero visibility on target iPhones (including with motion enabled).
