@@ -1,3 +1,5 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import FeatureCard from "@/components/FeatureCard";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
@@ -5,6 +7,7 @@ import Navbar from "@/components/Navbar";
 import ProductGrid from "@/components/ProductGrid";
 import { products } from "@/data/products";
 import { storeInfo } from "@/data/store";
+import { defaultDescription, defaultKeywords, normalizedPhone, siteUrl } from "@/lib/seo";
 
 const brandName = storeInfo.brandName;
 const logoPath = "/logo.png";
@@ -84,9 +87,62 @@ const phoneDisplay =
     ? `${phoneDigits.slice(0, 4)} ${phoneDigits.slice(4, 7)} ${phoneDigits.slice(7)}`
     : storeInfo.phone;
 
+const homeTitle = "Beauty Products Iloilo and Guimaras";
+
+export const metadata: Metadata = {
+  title: homeTitle,
+  description: defaultDescription,
+  keywords: defaultKeywords,
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: storeInfo.brandName,
+    url: siteUrl,
+    logo: `${siteUrl}/MLM.PNG`,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        contactType: "customer service",
+        telephone: normalizedPhone,
+        areaServed: ["PH"],
+      },
+    ],
+    sameAs: [storeInfo.orderUrl, storeInfo.tiktokUrl],
+  };
+
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "HealthAndBeautyBusiness",
+    name: storeInfo.brandName,
+    url: siteUrl,
+    image: `${siteUrl}/MLM.PNG`,
+    telephone: normalizedPhone,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "126 Delgado St",
+      addressLocality: "Iloilo City",
+      addressRegion: "Iloilo",
+      addressCountry: "PH",
+    },
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "Iloilo" },
+      { "@type": "AdministrativeArea", name: "Guimaras" },
+    ],
+    sameAs: [storeInfo.orderUrl, storeInfo.tiktokUrl, storeInfo.mapUrl],
+  };
+
   return (
     <div className="min-h-screen bg-[#fffdfb] text-stone-800">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify([organizationSchema, localBusinessSchema]),
+        }}
+      />
       <Navbar brandName={brandName} logoPath={logoPath} />
       <main>
         <HeroSection brandName={brandName} orderUrl={storeInfo.orderUrl} />
@@ -149,15 +205,15 @@ export default function Home() {
                 key={feedback.name}
                 className="rounded-3xl border border-rose-100 bg-white p-6 shadow-[0_14px_40px_-35px_rgba(136,19,55,0.5)]"
               >
-                <p className="text-sm leading-7 text-stone-600">
-                  &quot;{feedback.message}&quot;
-                </p>
-                <div className="mt-4 border-t border-rose-100 pt-4">
+                <div>
                   <p className="font-semibold text-rose-950">{feedback.name}</p>
                   <p className="text-xs uppercase tracking-wide text-stone-500">
                     {feedback.location}
                   </p>
                 </div>
+                <p className="mt-4 border-t border-rose-100 pt-4 text-sm leading-7 text-stone-600">
+                  &quot;{feedback.message}&quot;
+                </p>
               </article>
             ))}
           </div>
@@ -165,7 +221,7 @@ export default function Home() {
 
         <section id="contact" className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
           <div className="overflow-hidden rounded-[2rem] border border-rose-100 bg-gradient-to-br from-rose-100/55 via-white to-amber-100/35 p-8 shadow-[0_18px_50px_-36px_rgba(136,19,55,0.45)] md:p-12">
-            <div className="rounded-[1.5rem] bg-white/95 p-6 shadow-[0_16px_44px_-40px_rgba(136,19,55,0.45)] backdrop-blur-sm md:p-10">
+            <div className="rounded-[1.5rem] border border-rose-100/80 bg-white/95 p-6 shadow-[0_16px_44px_-40px_rgba(136,19,55,0.45)] backdrop-blur-sm md:p-10">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700">
                 Contact / Order
               </p>
@@ -268,6 +324,34 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
+          <div className="rounded-3xl border border-rose-100 bg-white p-6 shadow-[0_14px_40px_-36px_rgba(136,19,55,0.45)] md:p-8">
+            <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-700">
+              Iloilo guides and pages
+            </p>
+            <h2 className="mt-3 font-serif text-2xl text-rose-950 sm:text-3xl">
+              Helpful links for buyers and resellers
+            </h2>
+            <div className="mt-5 grid gap-3 sm:grid-cols-2">
+              <Link href="/beauty-products-iloilo" className="rounded-xl border border-rose-100 px-4 py-3 text-sm font-medium text-stone-700 hover:bg-rose-50">
+                Beauty Products Iloilo
+              </Link>
+              <Link href="/skincare-products-iloilo" className="rounded-xl border border-rose-100 px-4 py-3 text-sm font-medium text-stone-700 hover:bg-rose-50">
+                Skincare Products Iloilo
+              </Link>
+              <Link href="/reseller-beauty-products-iloilo" className="rounded-xl border border-rose-100 px-4 py-3 text-sm font-medium text-stone-700 hover:bg-rose-50">
+                Reseller Beauty Products Iloilo
+              </Link>
+              <Link href="/delivery-guimaras-beauty-products" className="rounded-xl border border-rose-100 px-4 py-3 text-sm font-medium text-stone-700 hover:bg-rose-50">
+                Guimaras Delivery Guide
+              </Link>
+              <Link href="/blog" className="rounded-xl border border-rose-100 px-4 py-3 text-sm font-medium text-stone-700 hover:bg-rose-50 sm:col-span-2">
+                Read Iloilo Beauty Guides
+              </Link>
             </div>
           </div>
         </section>

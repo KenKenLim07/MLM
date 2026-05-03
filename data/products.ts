@@ -6,6 +6,7 @@ export type Product = {
   price: number;
   description: string;
   imageLabel: string;
+  imageSrc?: string;
   messengerUrl: string;
 };
 
@@ -13,11 +14,12 @@ const messengerUrl = storeInfo.orderUrl;
 
 export const products: Product[] = [
   {
-    id: "kojic-soap",
-    name: "Kojic Soap",
+    id: "gel-cream",
+    name: "Sunscreen",
     price: 120,
-    description: "Gentle daily brightening bar for clearer and smoother skin.",
-    imageLabel: "Kojic Soap",
+    description: "Gentle daily brightening cream for clearer and smoother skin.",
+    imageLabel: "Sunscreen",
+    imageSrc: "/Gel_cream.jpg",
     messengerUrl,
   },
   {
@@ -26,6 +28,7 @@ export const products: Product[] = [
     price: 350,
     description: "Lightweight serum that helps boost glow and even skin tone.",
     imageLabel: "Whitening Serum",
+    imageSrc: "/whitening_serum.JPG",
     messengerUrl,
   },
   {
@@ -34,6 +37,7 @@ export const products: Product[] = [
     price: 599,
     description: "Complete glow routine bundle curated for everyday radiance.",
     imageLabel: "Glow Set",
+    imageSrc: "/glow_set.JPG",
     messengerUrl,
   },
   {
@@ -42,14 +46,16 @@ export const products: Product[] = [
     price: 280,
     description: "Non-sticky broad spectrum UV protection with soft finish.",
     imageLabel: "Sunscreen SPF50",
+    imageSrc: "/sunscreen.JPG",
     messengerUrl,
   },
   {
-    id: "collagen-drink",
-    name: "Collagen Drink",
+    id: "vaseline-cream",
+    name: "Vaseline Glutathione Cream",
     price: 450,
     description: "Beauty supplement drink formulated to support skin elasticity.",
     imageLabel: "Collagen Drink",
+    imageSrc: "/whitening_serum.JPG",
     messengerUrl,
   },
 ];
