@@ -54,6 +54,9 @@ export default function SkincareProductsIloiloPage() {
             href={storeInfo.orderUrl}
             target="_blank"
             rel="noopener noreferrer"
+            data-analytics-event="click_messenger_cta"
+            data-analytics-category="conversion"
+            data-analytics-label="local_landing_cta"
             className="rounded-full bg-rose-900 px-5 py-2.5 text-sm font-semibold text-white"
           >
             Chat on Messenger

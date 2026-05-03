@@ -238,6 +238,9 @@ export default function Home() {
                   href={storeInfo.orderUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-analytics-event="click_messenger_cta"
+                  data-analytics-category="conversion"
+                  data-analytics-label="homepage_contact_section"
                   className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-rose-900 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-rose-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-700"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
@@ -252,6 +255,9 @@ export default function Home() {
                   href={storeInfo.tiktokUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-analytics-event="click_tiktok_cta"
+                  data-analytics-category="conversion"
+                  data-analytics-label="homepage_contact_section"
                   className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full border border-rose-200 bg-white px-5 py-3 text-sm font-semibold text-rose-900 transition-all duration-300 hover:border-rose-300 hover:bg-rose-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-400"
                 >
                   <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
@@ -289,12 +295,15 @@ export default function Home() {
                         <a
                           href={`tel:${phoneTel}`}
                           aria-label={`Call or text ${phoneDisplay}`}
-                          className="inline-flex min-h-10 items-center rounded-lg text-base font-medium tabular-nums text-stone-800 underline decoration-rose-200 underline-offset-4 transition-colors hover:text-rose-900 hover:decoration-rose-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
+                          data-analytics-event="click_phone_cta"
+                          data-analytics-category="conversion"
+                          data-analytics-label="homepage_store_details"
+                          className="inline-flex min-h-10 items-center rounded-lg text-sm font-medium tabular-nums text-stone-800 underline decoration-rose-200 underline-offset-4 transition-colors hover:text-rose-900 hover:decoration-rose-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
                         >
                           {phoneDisplay}
                         </a>
                       ) : (
-                        <p className="text-base font-medium tabular-nums text-stone-800">
+                        <p className="text-base font-medium tabular-nums text-stone-700">
                           {phoneDisplay}
                         </p>
                       )}
@@ -366,6 +375,9 @@ export default function Home() {
         href={storeInfo.orderUrl}
         target="_blank"
         rel="noopener noreferrer"
+        data-analytics-event="click_messenger_cta"
+        data-analytics-category="conversion"
+        data-analytics-label="floating_mobile_cta"
         className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] right-[max(1rem,env(safe-area-inset-right))] z-50 flex min-h-12 max-w-[calc(100vw-2rem)] items-center gap-2 rounded-full border border-rose-200/80 bg-white pl-4 pr-1.5 text-rose-900 shadow-[0_14px_40px_-24px_rgba(136,19,55,0.55)] transition-all duration-300 hover:-translate-y-0.5 hover:border-rose-300 hover:bg-rose-50 hover:text-rose-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600 sm:hidden"
       >
         <span className="whitespace-nowrap text-xs font-semibold tracking-wide">

@@ -52,6 +52,9 @@ export default function ProductCard({ product }: ProductCardProps) {
             href={product.messengerUrl}
             target="_blank"
             rel="noreferrer"
+            data-analytics-event="click_messenger_cta"
+            data-analytics-category="conversion"
+            data-analytics-label={`product_card:${product.id}`}
             className="rounded-full bg-rose-900 px-4 py-2 text-sm font-semibold text-white transition-all duration-300 hover:bg-rose-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-600"
           >
             Inquire now
