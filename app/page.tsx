@@ -97,6 +97,10 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  const mapEmbedUrl = `https://www.google.com/maps?q=${encodeURIComponent(
+    storeInfo.locationText
+  )}&output=embed`;
+
   const organizationSchema = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -220,116 +224,105 @@ export default function Home() {
         </section>
 
         <section id="contact" className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
-          <div className="overflow-hidden rounded-[2rem] border border-rose-100 bg-gradient-to-br from-rose-100/55 via-white to-amber-100/35 p-8 shadow-[0_18px_50px_-36px_rgba(136,19,55,0.45)] md:p-12">
-            <div className="rounded-[1.5rem] border border-rose-100/80 bg-white/95 p-6 shadow-[0_16px_44px_-40px_rgba(136,19,55,0.45)] backdrop-blur-sm md:p-10">
-              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700">
-                Contact / Order
-              </p>
-              <h2 className="mt-3 font-serif text-3xl text-rose-950 sm:text-4xl">
-                Message us to order
-              </h2>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-stone-700">
-                Ready to stock up or ask about our latest beauty collection? Send us
-                a message and our team will respond quickly.
-              </p>
+          <div className="rounded-[2rem] border border-rose-100 bg-white p-6 shadow-[0_18px_50px_-36px_rgba(136,19,55,0.45)] md:p-10">
+            <div className="grid gap-10 md:grid-cols-2 md:items-start">
+              <div className="space-y-6">
+                <div className="space-y-3">
+                  <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700">
+                    Contact
+                  </p>
+                  <h2 className="font-serif text-3xl text-rose-950 sm:text-4xl">
+                    Order via Messenger
+                  </h2>
+                  <p className="max-w-xl text-base leading-7 text-stone-700">
+                    Message us to order or ask for prices. Fastest replies are usually on{" "}
+                    <span className="font-medium text-stone-700">Messenger</span>.
+                  </p>
+                </div>
 
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                <a
-                  href={storeInfo.orderUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-analytics-event="click_messenger_cta"
-                  data-analytics-category="conversion"
-                  data-analytics-label="homepage_contact_section"
-                  className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-rose-900 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-rose-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-700"
-                >
-                  <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
-                    <path
-                      d="M20 12a8 8 0 10-9.27 7.9v-5.58h-2.4V12h2.4V10.2c0-2.37 1.4-3.68 3.55-3.68 1.03 0 2.1.18 2.1.18V9h-1.18c-1.17 0-1.53.72-1.53 1.46V12h2.6l-.42 2.32h-2.18v5.58A8 8 0 0020 12z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  Facebook / Messenger
-                </a>
-                <a
-                  href={storeInfo.tiktokUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  data-analytics-event="click_tiktok_cta"
-                  data-analytics-category="conversion"
-                  data-analytics-label="homepage_contact_section"
-                  className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full border border-rose-200 bg-white px-5 py-3 text-sm font-semibold text-rose-900 transition-all duration-300 hover:border-rose-300 hover:bg-rose-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-400"
-                >
-                  <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
-                    <path
-                      d="M16.5 3c.3 1.7 1.3 3 2.9 3.7V9c-1.2 0-2.4-.4-3.4-1.1v5.2c0 2.8-2.3 5-5.1 5A5.05 5.05 0 016 13c0-2.8 2.2-5 5-5 .3 0 .6 0 .9.1v2.5c-.3-.1-.6-.2-.9-.2-1.4 0-2.5 1.1-2.5 2.5S9.6 15.4 11 15.4s2.5-1.1 2.5-2.5V3h3z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  Follow us on TikTok
-                </a>
-              </div>
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <a
+                    href={storeInfo.orderUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-analytics-event="click_messenger_cta"
+                    data-analytics-category="conversion"
+                    data-analytics-label="homepage_contact_section"
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full bg-rose-900 px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-rose-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-700 sm:col-span-2"
+                  >
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
+                      <path
+                        d="M20 12a8 8 0 10-9.27 7.9v-5.58h-2.4V12h2.4V10.2c0-2.37 1.4-3.68 3.55-3.68 1.03 0 2.1.18 2.1.18V9h-1.18c-1.17 0-1.53.72-1.53 1.46V12h2.6l-.42 2.32h-2.18v5.58A8 8 0 0020 12z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                    Facebook / Messenger
+                  </a>
 
-              <p className="mt-5 max-w-2xl text-sm leading-6 text-stone-600">
-                Fastest replies are usually on{" "}
-                <span className="font-medium text-stone-700">Messenger</span>. For calls or
-                texts, use the number below.
-              </p>
-
-              <div className="mt-8 border-t border-rose-100 pt-8">
-                <h3 className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-700">
-                  Store details
-                </h3>
-                <div className="mt-6 space-y-8">
-                  <div className="flex gap-4 sm:items-start">
-                    <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-rose-100 bg-rose-50/80 text-rose-800">
-                      <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+                  {phoneDigits ? (
+                    <a
+                      href={`tel:${phoneTel}`}
+                      aria-label={`Call or text ${phoneDisplay}`}
+                      data-analytics-event="click_phone_cta"
+                      data-analytics-category="conversion"
+                      data-analytics-label="homepage_store_details"
+                      className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full border border-rose-200 bg-white px-5 py-3 text-sm font-semibold text-rose-900 transition-all duration-300 hover:border-rose-300 hover:bg-rose-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
+                    >
+                      <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
                         <path
                           d="M6.6 10.8a15.6 15.6 0 006.6 6.6l2.2-2.2a1 1 0 011-.24 11.2 11.2 0 003.5.56 1 1 0 011 1V20a1 1 0 01-1 1C10.3 21 3 13.7 3 4a1 1 0 011-1h3.5a1 1 0 011 1 11.2 11.2 0 00.56 3.5 1 1 0 01-.24 1l-2.27 2.3z"
                           fill="currentColor"
                         />
                       </svg>
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      {phoneDigits ? (
-                        <a
-                          href={`tel:${phoneTel}`}
-                          aria-label={`Call or text ${phoneDisplay}`}
-                          data-analytics-event="click_phone_cta"
-                          data-analytics-category="conversion"
-                          data-analytics-label="homepage_store_details"
-                          className="inline-flex min-h-10 items-center rounded-lg text-sm font-medium tabular-nums text-stone-800 underline decoration-rose-200 underline-offset-4 transition-colors hover:text-rose-900 hover:decoration-rose-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
-                        >
-                          {phoneDisplay}
-                        </a>
-                      ) : (
-                        <p className="text-base font-medium tabular-nums text-stone-700">
-                          {phoneDisplay}
-                        </p>
-                      )}
-                    </div>
-                  </div>
+                      Call / Text
+                    </a>
+                  ) : null}
 
-                  <div className="flex gap-4 sm:items-start">
-                    <span className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-rose-100 bg-rose-50/80 text-rose-800">
-                      <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
-                        <path
-                          d="M12 2a7 7 0 00-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 00-7-7zm0 9.5A2.5 2.5 0 1112 6a2.5 2.5 0 010 5.5z"
-                          fill="currentColor"
-                        />
-                      </svg>
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <a
-                        href={storeInfo.mapUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={`Open in Google Maps: ${storeInfo.locationText}`}
-                        className="flex min-h-10 w-full items-center text-left text-sm font-medium leading-6 text-stone-700 underline decoration-rose-200 underline-offset-4 transition-colors hover:text-rose-900 hover:decoration-rose-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-500"
-                      >
-                        {storeInfo.locationText}
-                      </a>
-                    </div>
+                  <a
+                    href={storeInfo.tiktokUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-analytics-event="click_tiktok_cta"
+                    data-analytics-category="conversion"
+                    data-analytics-label="homepage_contact_section"
+                    className="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-full border border-rose-200 bg-white px-5 py-3 text-sm font-semibold text-rose-900 transition-all duration-300 hover:border-rose-300 hover:bg-rose-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-400"
+                  >
+                    <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" aria-hidden="true">
+                      <path
+                        d="M16.5 3c.3 1.7 1.3 3 2.9 3.7V9c-1.2 0-2.4-.4-3.4-1.1v5.2c0 2.8-2.3 5-5.1 5A5.05 5.05 0 016 13c0-2.8 2.2-5 5-5 .3 0 .6 0 .9.1v2.5c-.3-.1-.6-.2-.9-.2-1.4 0-2.5 1.1-2.5 2.5S9.6 15.4 11 15.4s2.5-1.1 2.5-2.5V3h3z"
+                        fill="currentColor"
+                      />
+                    </svg>
+                    TikTok
+                  </a>
+                </div>
+
+                <p className="text-sm leading-6 text-stone-600">
+                  For delivery and branch availability, include your location and the products you want in your message.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.18em] text-rose-700">
+                    Store Location
+                  </p>
+                  <p className="mt-2 text-sm font-medium leading-6 text-stone-700">
+                    {storeInfo.locationText}
+                  </p>
+                </div>
+
+                <div className="overflow-hidden rounded-2xl border border-rose-100 bg-rose-50/40 shadow-[0_16px_44px_-36px_rgba(136,19,55,0.5)]">
+                  <iframe
+                    title="MLM Skincare location map"
+                    src={mapEmbedUrl}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="h-[210px] w-full md:h-[320px]"
+                    allowFullScreen
+                  />
+                  <div className="border-t border-rose-100 bg-white/80 px-4 py-3 text-xs text-stone-600">
+                    Zoom and drag to explore.
                   </div>
                 </div>
               </div>
@@ -340,7 +333,7 @@ export default function Home() {
         <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
           <div className="rounded-3xl border border-rose-100 bg-white p-6 shadow-[0_14px_40px_-36px_rgba(136,19,55,0.45)] md:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-700">
-              Iloilo guides and pages
+              Guides and pages
             </p>
             <h2 className="mt-3 font-serif text-2xl text-rose-950 sm:text-3xl">
               Helpful links for buyers and resellers
@@ -356,10 +349,10 @@ export default function Home() {
                 Reseller Beauty Products Iloilo
               </Link>
               <Link href="/delivery-guimaras-beauty-products" className="rounded-xl border border-rose-100 px-4 py-3 text-sm font-medium text-stone-700 hover:bg-rose-50">
-                Guimaras Delivery Guide
+                Delivery Guide
               </Link>
               <Link href="/blog" className="rounded-xl border border-rose-100 px-4 py-3 text-sm font-medium text-stone-700 hover:bg-rose-50 sm:col-span-2">
-                Read Iloilo Beauty Guides
+                Read Beauty Guides
               </Link>
             </div>
           </div>
