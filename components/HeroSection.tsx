@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import Image from "next/image";
 
 type HeroSectionProps = {
   brandName: string;
@@ -132,6 +133,17 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
             <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-rose-200/40 blur-2xl" />
             <div className="absolute -bottom-10 -left-4 h-36 w-36 rounded-full bg-amber-200/30 blur-2xl" />
             <div className="relative flex h-full flex-col justify-between text-center md:text-left">
+              <div className="relative mb-5 aspect-[16/10] overflow-hidden rounded-2xl border border-rose-100/80">
+                <Image
+                  src="/landing.PNG"
+                  alt={`${brandName} featured products`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="object-cover"
+                  priority
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-rose-950/12 via-transparent to-transparent" />
+              </div>
               <p className="font-serif text-3xl text-rose-900">
                 <span
                   className="inline-block"
@@ -166,6 +178,17 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
             <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-rose-200/40 blur-2xl" />
             <div className="absolute -bottom-10 -left-4 h-36 w-36 rounded-full bg-amber-200/30 blur-2xl" />
             <div className="relative flex h-full flex-col justify-between text-center md:text-left">
+              <div className="relative mb-5 aspect-[16/10] overflow-hidden rounded-2xl border border-rose-100/80">
+                <Image
+                  src="/landingv4.PNG"
+                  alt={`${brandName} featured products`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 40vw"
+                  className="object-cover"
+                  priority
+                />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-rose-950/12 via-transparent to-transparent" />
+              </div>
               <p className="font-serif text-3xl text-rose-900">
                 <motion.span
                   animate={{
