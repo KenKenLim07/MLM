@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
 import Navbar from "@/components/Navbar";
 import ProductGrid from "@/components/ProductGrid";
+import ScrollReveal from "@/components/ScrollReveal";
 import { products } from "@/data/products";
 import { storeInfo } from "@/data/store";
 import { defaultDescription, defaultKeywords, normalizedPhone, siteUrl } from "@/lib/seo";
@@ -152,7 +153,7 @@ export default function Home() {
         <HeroSection brandName={brandName} orderUrl={storeInfo.orderUrl} />
 
         <section className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 md:py-20">
-          <div className="grid gap-8 rounded-[2rem] border border-rose-100 bg-white p-8 shadow-[0_18px_50px_-36px_rgba(136,19,55,0.5)] md:grid-cols-[1.1fr_0.9fr] md:p-12">
+          <ScrollReveal className="grid gap-8 rounded-[2rem] border border-rose-100 bg-white p-8 shadow-[0_18px_50px_-36px_rgba(136,19,55,0.5)] md:grid-cols-[1.1fr_0.9fr] md:p-12">
             <div className="space-y-4">
               <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700">
                 About Us
@@ -168,63 +169,67 @@ export default function Home() {
               orders. We proudly serve branches in{" "}
               {storeInfo.branches.join(" and ")}.
             </p>
-          </div>
+          </ScrollReveal>
         </section>
 
         <ProductGrid products={products} />
 
         <section className="mx-auto w-full max-w-6xl px-5 py-16 sm:px-8 md:py-20">
-          <div className="mb-8 space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700">
-              Why Choose Us
-            </p>
-            <h2 className="font-serif text-3xl text-rose-950 sm:text-4xl">
-              Built on Trust, Service, and Results
-            </h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {features.map((feature) => (
-              <FeatureCard
-                key={feature.title}
-                icon={feature.icon}
-                title={feature.title}
-                description={feature.description}
-              />
-            ))}
-          </div>
+          <ScrollReveal className="space-y-8">
+            <div className="space-y-3">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700">
+                Why Choose Us
+              </p>
+              <h2 className="font-serif text-3xl text-rose-950 sm:text-4xl">
+                Built on Trust, Service, and Results
+              </h2>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3">
+              {features.map((feature) => (
+                <FeatureCard
+                  key={feature.title}
+                  icon={feature.icon}
+                  title={feature.title}
+                  description={feature.description}
+                />
+              ))}
+            </div>
+          </ScrollReveal>
         </section>
 
         <section className="mx-auto w-full max-w-6xl px-5 pb-16 sm:px-8 md:pb-20">
-          <div className="mb-8 space-y-3">
-            <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700">
-              Customer Feedback
-            </p>
-            <h2 className="font-serif text-3xl text-rose-950 sm:text-4xl">
-              What Customers Say
-            </h2>
-          </div>
-          <div className="grid gap-5 md:grid-cols-3">
-            {feedbacks.map((feedback) => (
-              <article
-                key={feedback.name}
-                className="rounded-3xl border border-rose-100 bg-white p-6 shadow-[0_14px_40px_-35px_rgba(136,19,55,0.5)]"
-              >
-                <div>
-                  <p className="font-semibold text-rose-950">{feedback.name}</p>
-                  <p className="text-xs uppercase tracking-wide text-stone-500">
-                    {feedback.location}
+          <ScrollReveal className="space-y-8">
+            <div className="space-y-3">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-rose-700">
+                Customer Feedback
+              </p>
+              <h2 className="font-serif text-3xl text-rose-950 sm:text-4xl">
+                What Customers Say
+              </h2>
+            </div>
+            <div className="grid gap-5 md:grid-cols-3">
+              {feedbacks.map((feedback) => (
+                <article
+                  key={feedback.name}
+                  className="rounded-3xl border border-rose-100 bg-white p-6 shadow-[0_14px_40px_-35px_rgba(136,19,55,0.5)]"
+                >
+                  <div>
+                    <p className="font-semibold text-rose-950">{feedback.name}</p>
+                    <p className="text-xs uppercase tracking-wide text-stone-500">
+                      {feedback.location}
+                    </p>
+                  </div>
+                  <p className="mt-4 border-t border-rose-100 pt-4 text-sm leading-7 text-stone-600">
+                    &quot;{feedback.message}&quot;
                   </p>
-                </div>
-                <p className="mt-4 border-t border-rose-100 pt-4 text-sm leading-7 text-stone-600">
-                  &quot;{feedback.message}&quot;
-                </p>
-              </article>
-            ))}
-          </div>
+                </article>
+              ))}
+            </div>
+          </ScrollReveal>
         </section>
 
         <section id="contact" className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
-          <div className="rounded-[2rem] border border-rose-100 bg-white p-6 shadow-[0_18px_50px_-36px_rgba(136,19,55,0.45)] md:p-10">
+          <ScrollReveal className="rounded-[2rem] border border-rose-100 bg-white p-6 shadow-[0_18px_50px_-36px_rgba(136,19,55,0.45)] md:p-10">
             <div className="grid gap-10 md:grid-cols-2 md:items-start">
               <div className="space-y-6">
                 <div className="space-y-3">
@@ -327,11 +332,11 @@ export default function Home() {
                 </div>
               </div>
             </div>
-          </div>
+          </ScrollReveal>
         </section>
 
         <section className="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-8">
-          <div className="rounded-3xl border border-rose-100 bg-white p-6 shadow-[0_14px_40px_-36px_rgba(136,19,55,0.45)] md:p-8">
+          <ScrollReveal className="rounded-3xl border border-rose-100 bg-white p-6 shadow-[0_14px_40px_-36px_rgba(136,19,55,0.45)] md:p-8">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-rose-700">
               Guides and pages
             </p>
@@ -355,7 +360,7 @@ export default function Home() {
                 Read Beauty Guides
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
         </section>
       </main>
 

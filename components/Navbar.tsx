@@ -15,19 +15,26 @@ type NavbarProps = {
 };
 
 function PremiumMenuIcon({ open }: { open: boolean }) {
+  const curve = "cubic-bezier(0.4, 0, 0.2, 1)";
   return (
     <span className="relative block h-3.5 w-6 shrink-0 text-current" aria-hidden>
       <span
-        className="absolute left-0 top-0 h-0.5 w-full rounded-full bg-current transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
-        style={{ transform: open ? "translateY(6px) rotate(45deg)" : "none" }}
+        className="absolute left-0 top-0 h-0.5 w-full rounded-full bg-current transition-transform duration-[250ms]"
+        style={{
+          transform: open ? "translateY(6px) rotate(45deg)" : "none",
+          transitionTimingFunction: curve,
+        }}
       />
       <span
         className="absolute left-0 top-1/2 h-0.5 w-full -translate-y-1/2 rounded-full bg-current transition-opacity duration-200 ease-out"
         style={{ opacity: open ? 0 : 1 }}
       />
       <span
-        className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-current transition-transform duration-200 ease-[cubic-bezier(0.22,1,0.36,1)]"
-        style={{ transform: open ? "translateY(-6px) rotate(-45deg)" : "none" }}
+        className="absolute bottom-0 left-0 h-0.5 w-full rounded-full bg-current transition-transform duration-[250ms]"
+        style={{
+          transform: open ? "translateY(-6px) rotate(-45deg)" : "none",
+          transitionTimingFunction: curve,
+        }}
       />
     </span>
   );
@@ -94,7 +101,7 @@ export default function Navbar({ brandName, logoPath }: NavbarProps) {
 
         <button
           type="button"
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-rose-950 transition-colors hover:bg-rose-50 active:bg-rose-100/80 md:hidden"
+          className="flex h-11 w-11 shrink-0 cursor-pointer touch-manipulation items-center justify-center rounded-full text-rose-950 transition-colors hover:bg-rose-50 active:bg-rose-100/80 md:hidden [-webkit-tap-highlight-color:transparent]"
           aria-expanded={open}
           aria-controls={menuId}
           aria-label={open ? "Close menu" : "Open menu"}
@@ -106,7 +113,7 @@ export default function Navbar({ brandName, logoPath }: NavbarProps) {
 
       <div className="md:hidden">
         <div
-          className={`fixed inset-0 top-16 z-30 bg-stone-900/20 backdrop-blur-[2px] transition-opacity duration-200 ease-out ${
+          className={`fixed inset-0 top-16 z-30 bg-stone-900/20 backdrop-blur-[2px] transition-opacity duration-300 ease-out ${
             open ? "opacity-100" : "pointer-events-none opacity-0"
           }`}
           aria-hidden
@@ -118,25 +125,29 @@ export default function Navbar({ brandName, logoPath }: NavbarProps) {
           aria-label="Mobile navigation"
           aria-hidden={!open}
           inert={!open}
-          className={`absolute left-0 right-0 top-full z-40 overflow-hidden border-b border-rose-100/90 bg-white/95 shadow-[0_12px_40px_-12px_rgba(76,29,29,0.12)] backdrop-blur-md transition-[max-height,opacity,transform] duration-200 ease-[cubic-bezier(0.22,1,0.36,1)] ${
-            open
-              ? "max-h-64 translate-y-0 opacity-100"
-              : "pointer-events-none max-h-0 -translate-y-1 opacity-0"
-          }`}
+          className={`absolute left-0 right-0 top-full z-40 border-b border-rose-100/90 bg-white/95 shadow-[0_12px_40px_-12px_rgba(76,29,29,0.12)] backdrop-blur-md transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-[grid-template-rows] ${
+            open ? "grid-rows-[1fr]" : "pointer-events-none grid-rows-[0fr]"
+          } grid`}
         >
-          <ul className="flex flex-col px-5 py-4 sm:px-8">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                <a
-                  href={link.href}
-                  className="flex min-h-11 items-center rounded-xl px-4 text-base font-medium text-stone-800 transition-colors hover:bg-rose-50 hover:text-rose-900 active:bg-rose-100/60"
-                  onClick={() => setOpen(false)}
-                >
-                  {link.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+          <div className="min-h-0 overflow-hidden">
+            <ul
+              className={`flex flex-col px-5 py-4 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] sm:px-8 ${
+                open ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
+              }`}
+            >
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="flex min-h-11 touch-manipulation items-center rounded-xl px-4 text-base font-medium text-stone-800 transition-colors hover:bg-rose-50 hover:text-rose-900 active:bg-rose-100/60"
+                    onClick={() => setOpen(false)}
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </header>
