@@ -17,6 +17,11 @@ const playfair = Playfair_Display({
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  icons: {
+    /** Tab + search favicon; Google crawls this URL (keep it fast & public). */
+    icon: [{ url: "/MLM.PNG", type: "image/png" }],
+    apple: [{ url: "/MLM.PNG", type: "image/png" }],
+  },
   title: {
     default: defaultTitle,
     template: "%s | MLM Skincare Iloilo",
