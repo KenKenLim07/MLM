@@ -12,6 +12,13 @@ const softRise = {
   animate: { y: 0, opacity: 1 },
 };
 
+const glowWordTransition = {
+  duration: 1.8,
+  repeat: Infinity,
+  repeatType: "reverse" as const,
+  ease: "easeInOut" as const,
+};
+
 export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
   const reduceMotion = useReducedMotion();
 
@@ -28,8 +35,13 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
               <h1 className="mx-auto max-w-xl font-serif text-4xl leading-tight text-rose-950 sm:text-5xl md:mx-0 md:text-6xl">
                 {brandName}
               </h1>
-              <h2 className="mx-auto max-w-xl text-xl font-medium leading-relaxed text-stone-800 sm:text-2xl md:mx-0">
-                Premium Beauty Products for Radiant Skin
+              <h2 className="mx-auto max-w-xl leading-relaxed md:mx-0">
+                <span className="bg-gradient-to-r from-amber-500 via-rose-500 to-rose-700 bg-clip-text text-3xl font-semibold text-transparent sm:text-4xl">
+                  Premium
+                </span>{" "}
+                <span className="text-xl font-medium text-stone-800/65 sm:text-2xl">
+                  Beauty Products for Radiant Skin
+                </span>
               </h2>
               <p className="mx-auto max-w-xl text-base leading-7 text-stone-600 sm:text-lg md:mx-0">
                 Curated skincare and beauty essentials trusted by resellers and
@@ -55,9 +67,14 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
               <motion.h2
                 {...softRise}
                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.08 }}
-                className="mx-auto max-w-xl text-xl font-medium leading-relaxed text-stone-800 sm:text-2xl md:mx-0"
+                className="mx-auto max-w-xl leading-relaxed md:mx-0"
               >
-                Premium Beauty Products for Radiant Skin
+                <span className="bg-gradient-to-r from-amber-500 via-rose-500 to-rose-700 bg-clip-text text-3xl font-semibold text-transparent sm:text-4xl">
+                  Premium
+                </span>{" "}
+                <span className="text-xl font-medium text-stone-800/65 sm:text-2xl">
+                  Beauty Products for Radiant Skin
+                </span>
               </motion.h2>
               <motion.p
                 {...softRise}
@@ -115,7 +132,14 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
             <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-rose-200/40 blur-2xl" />
             <div className="absolute -bottom-10 -left-4 h-36 w-36 rounded-full bg-amber-200/30 blur-2xl" />
             <div className="relative flex h-full flex-col justify-between text-center md:text-left">
-              <p className="font-serif text-3xl text-rose-900">Glow with Confidence</p>
+              <p className="font-serif text-3xl text-rose-900">
+                <span
+                  className="inline-block"
+                  style={{ textShadow: "0 0 14px rgba(136,19,55,0.28), 0 0 8px rgba(251,191,36,0.2)" }}
+                >
+                  Glow with Confidence
+                </span>
+              </p>
               <p className="mx-auto max-w-xs text-sm leading-6 text-stone-600 md:mx-0">
                 Wholesale-ready selections, quality-controlled products, and fast
                 messenger ordering support for your beauty business.
@@ -142,10 +166,23 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
             <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-rose-200/40 blur-2xl" />
             <div className="absolute -bottom-10 -left-4 h-36 w-36 rounded-full bg-amber-200/30 blur-2xl" />
             <div className="relative flex h-full flex-col justify-between text-center md:text-left">
-              <p className="font-serif text-3xl text-rose-900">Glow with Confidence</p>
+              <p className="font-serif text-3xl text-rose-900">
+                <motion.span
+                  animate={{
+                    textShadow: [
+                      "0 0 14px rgba(136,19,55,0.2), 0 0 8px rgba(251,191,36,0.16)",
+                      "0 0 18px rgba(136,19,55,0.34), 0 0 12px rgba(251,191,36,0.24)",
+                    ],
+                  }}
+                  transition={glowWordTransition}
+                  className="inline-block"
+                >
+                  Glow with Confidence
+                </motion.span>
+              </p>
               <p className="mx-auto max-w-xs text-sm leading-6 text-stone-600 md:mx-0">
                 Wholesale-ready selections, quality-controlled products, and fast
-                messenger ordering support for your beauty business.
+                ordering support for your beauty business.
               </p>
               <div className="mt-8 grid grid-cols-2 gap-3 text-sm md:text-left">
                 <div className="rounded-2xl border border-rose-100 bg-white/75 p-4">

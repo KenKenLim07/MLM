@@ -41,15 +41,13 @@ Track these in one sheet/dashboard every week:
 4. Add internal links from homepage/blog to pages with ranking momentum.
 5. Publish 3-5 new long-tail pieces in `/blog`.
 
-## 4) Event tracking recommendation (next step)
+## 4) Event tracking (implemented)
 
-For conversion visibility, track click events on:
-- Messenger CTA buttons
-- Phone `tel:` links
-- TikTok profile links
+Conversion visibility uses **`components/AnalyticsClickTracker.tsx`** plus **`data-analytics-event`** on CTAs (Messenger, phone, TikTok, product “Inquire” where applicable). Event names:
 
-Suggested event names:
 - `click_messenger_cta`
 - `click_phone_cta`
 - `click_tiktok_cta`
+
+Technical overview: [seo-implementation.md](./seo-implementation.md) §6.
 
