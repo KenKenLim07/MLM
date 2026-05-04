@@ -45,7 +45,7 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
             transition={{ duration: 0.5, ease: "easeOut", delay: 0.08 }}
             className="mx-auto max-w-xl leading-relaxed md:mx-0"
           >
-            <span className="text-3xl font-semibold text-rose-700 sm:text-4xl">Premium</span>{" "}
+            <span className="text-3xl text-rose-700 sm:text-4xl">Premium</span>{" "}
             <span className="text-xl font-medium text-stone-800/65 sm:text-2xl">
               Beauty Products for Radiant Skin
             </span>
