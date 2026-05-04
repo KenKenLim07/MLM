@@ -36,7 +36,7 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
                 {brandName}
               </h1>
               <h2 className="mx-auto max-w-xl leading-relaxed md:mx-0">
-                <span className="bg-gradient-to-r from-amber-500 via-rose-500 to-rose-700 bg-clip-text text-3xl font-semibold text-transparent sm:text-4xl">
+                <span className="text-3xl font-semibold text-amber-600 sm:text-4xl">
                   Premium
                 </span>{" "}
                 <span className="text-xl font-medium text-stone-800/65 sm:text-2xl">
@@ -69,7 +69,7 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
                 transition={{ duration: 0.5, ease: "easeOut", delay: 0.08 }}
                 className="mx-auto max-w-xl leading-relaxed md:mx-0"
               >
-                <span className="bg-gradient-to-r from-amber-500 via-rose-500 to-rose-700 bg-clip-text text-3xl font-semibold text-transparent sm:text-4xl">
+                <span className="text-3xl font-semibold text-amber-600 sm:text-4xl">
                   Premium
                 </span>{" "}
                 <span className="text-xl font-medium text-stone-800/65 sm:text-2xl">
