@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import type { ReactNode } from "react";
 import { useRef } from "react";
 
@@ -9,19 +9,10 @@ type ScrollRevealProps = {
   className?: string;
 };
 
-/** One-time subtle enter when scrolled into view; disabled when reduced motion is on. */
+/** One-time subtle enter when scrolled into view. */
 export default function ScrollReveal({ children, className }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-48px 0px" });
-  const reduceMotion = useReducedMotion();
-
-  if (reduceMotion) {
-    return (
-      <div ref={ref} className={className}>
-        {children}
-      </div>
-    );
-  }
 
   return (
     <motion.div
