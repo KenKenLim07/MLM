@@ -65,7 +65,7 @@ export default function Navbar({ brandName, logoPath }: NavbarProps) {
   }, [open]);
 
   return (
-    <header className="relative sticky top-0 z-40 border-b border-rose-100/80 bg-white/90 backdrop-blur-md">
+    <header className="relative sticky top-0 z-40 border-b border-rose-100/80 bg-white/85 shadow-[0_8px_28px_-26px_rgba(136,19,55,0.55)] backdrop-blur-lg">
       <nav
         className="relative z-50 mx-auto flex h-16 w-full max-w-6xl items-center justify-between px-5 sm:px-8"
         aria-label="Primary"
@@ -113,8 +113,10 @@ export default function Navbar({ brandName, logoPath }: NavbarProps) {
 
       <div className="md:hidden">
         <div
-          className={`fixed inset-0 top-16 z-30 bg-stone-900/20 backdrop-blur-[2px] transition-opacity duration-300 ease-out ${
-            open ? "opacity-100" : "pointer-events-none opacity-0"
+          className={`fixed inset-0 top-16 z-30 transition-opacity duration-300 ease-out ${
+            open
+              ? "bg-stone-950/45 opacity-100 backdrop-blur-md"
+              : "pointer-events-none bg-transparent opacity-0 backdrop-blur-0"
           }`}
           aria-hidden
           onClick={() => setOpen(false)}
@@ -125,21 +127,25 @@ export default function Navbar({ brandName, logoPath }: NavbarProps) {
           aria-label="Mobile navigation"
           aria-hidden={!open}
           inert={!open}
-          className={`absolute left-0 right-0 top-full z-40 border-b border-rose-100/90 bg-white/95 shadow-[0_12px_40px_-12px_rgba(76,29,29,0.12)] backdrop-blur-md transition-[grid-template-rows] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-[grid-template-rows] ${
-            open ? "grid-rows-[1fr]" : "pointer-events-none grid-rows-[0fr]"
-          } grid`}
+          className={`absolute left-2 right-2 top-[calc(100%+0.4rem)] z-40 grid rounded-2xl transition-[grid-template-rows,opacity,transform] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] will-change-[grid-template-rows,transform] sm:left-4 sm:right-4 ${
+            open
+              ? "grid-rows-[1fr] border border-rose-100/80 bg-white/95 opacity-100 shadow-[0_20px_55px_-24px_rgba(76,29,29,0.26)] ring-1 ring-rose-100/60 backdrop-blur-xl"
+              : "pointer-events-none grid-rows-[0fr] border-transparent bg-transparent opacity-0 shadow-none ring-0 backdrop-blur-0"
+          } rounded-2xl`}
         >
           <div className="min-h-0 overflow-hidden">
             <ul
-              className={`flex flex-col px-5 py-4 transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] sm:px-8 ${
-                open ? "translate-y-0 opacity-100" : "-translate-y-1 opacity-0"
+              className={`flex flex-col px-5 py-4 transition-[opacity,transform] ease-[cubic-bezier(0.4,0,0.2,1)] sm:px-8 ${
+                open
+                  ? "translate-y-0 opacity-100 duration-300"
+                  : "translate-y-0 opacity-0 duration-100"
               }`}
             >
               {navLinks.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="flex min-h-11 touch-manipulation items-center rounded-xl px-4 text-base font-medium text-stone-800 transition-colors hover:bg-rose-50 hover:text-rose-900 active:bg-rose-100/60"
+                    className="flex min-h-11 touch-manipulation items-center rounded-xl px-4 py-3 text-base font-medium text-stone-800 transition-[background-color,color,transform] duration-200 hover:bg-rose-50 hover:text-rose-900 active:scale-[0.99] active:bg-rose-100/60"
                     onClick={() => setOpen(false)}
                   >
                     {link.label}
