@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
@@ -27,18 +27,31 @@ const heroImages = [
 ];
 
 export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
+  const slideCount = heroImages.length;
   const [activeImage, setActiveImage] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveImage((prev) => (prev + 1) % heroImages.length);
+      setDirection(1);
+      setActiveImage((prev) => (prev + 1) % slideCount);
     }, 4200);
     return () => clearInterval(timer);
-  }, []);
+  }, [slideCount]);
 
-  const prevImage = () =>
-    setActiveImage((prev) => (prev - 1 + heroImages.length) % heroImages.length);
-  const nextImage = () => setActiveImage((prev) => (prev + 1) % heroImages.length);
+  const prevImage = () => {
+    setDirection(-1);
+    setActiveImage((prev) => (prev - 1 + slideCount) % slideCount);
+  };
+  const nextImage = () => {
+    setDirection(1);
+    setActiveImage((prev) => (prev + 1) % slideCount);
+  };
+  const goToImage = (idx: number) => {
+    if (idx === activeImage) return;
+    setDirection(idx > activeImage ? 1 : -1);
+    setActiveImage(idx);
+  };
 
   return (
     <section id="home" className="relative overflow-hidden">
@@ -109,24 +122,33 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
           <div className="absolute -bottom-10 -left-4 h-36 w-36 rounded-full bg-amber-200/30 blur-2xl" />
           <div className="relative flex h-full flex-col justify-between text-center md:text-left">
             <div className="relative -mx-8 -mt-8 mb-6 aspect-[16/10] overflow-hidden rounded-t-[2.25rem] bg-rose-50/50">
-              <motion.div
-                animate={{ x: `-${activeImage * 100}%` }}
-                transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
-                className="flex h-full w-full"
-              >
-                {heroImages.map((image) => (
-                  <div key={image.src} className="relative h-full min-w-full">
+              <AnimatePresence initial={false} custom={direction} mode="sync">
+                <motion.div
+                  key={activeImage}
+                  custom={direction}
+                  variants={{
+                    enter: (dir: 1 | -1) => ({ x: dir > 0 ? "100%" : "-100%" }),
+                    center: { x: "0%" },
+                    exit: (dir: 1 | -1) => ({ x: dir > 0 ? "-100%" : "100%" }),
+                  }}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+                  className="absolute inset-0"
+                >
+                  <div className="relative h-full w-full">
                     <Image
-                      src={image.src}
-                      alt={image.alt}
+                      src={heroImages[activeImage].src}
+                      alt={heroImages[activeImage].alt}
                       fill
                       sizes="(max-width: 768px) 100vw, 40vw"
                       className="object-cover"
                       priority
                     />
                   </div>
-                ))}
-              </motion.div>
+                </motion.div>
+              </AnimatePresence>
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-rose-950/12 via-transparent to-transparent" />
               <div className="absolute inset-x-3 bottom-3 flex items-center justify-between">
                 <div className="flex items-center gap-1.5 rounded-full bg-white/80 px-2 py-1 backdrop-blur-sm">
@@ -134,7 +156,7 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
                     <button
                       key={image.src}
                       type="button"
-                      onClick={() => setActiveImage(idx)}
+                      onClick={() => goToImage(idx)}
                       aria-label={`Show hero image ${idx + 1}`}
                       className={`h-1.5 rounded-full transition-all ${
                         idx === activeImage ? "w-5 bg-rose-700" : "w-2 bg-rose-300"
