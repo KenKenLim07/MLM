@@ -22,7 +22,7 @@ const glowWordTransition = {
 };
 
 const heroImages = [
-  { src: "/landingv4.PNG", alt: "MLM Skincare featured products set 1" },
+  { src: "/landingv6.PNG", alt: "MLM Skincare featured products set 1" },
   { src: "/landingv5.jpg", alt: "MLM Skincare featured products set 2" },
 ];
 
