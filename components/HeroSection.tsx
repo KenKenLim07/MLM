@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 type HeroSectionProps = {
   brandName: string;
@@ -31,14 +31,30 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
   const slideCount = heroImages.length;
   const [activeImage, setActiveImage] = useState(0);
   const [direction, setDirection] = useState<1 | -1>(1);
+  const [loadedImages, setLoadedImages] = useState<Record<string, boolean>>({});
+  const autoplayRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
+  const AUTOPLAY_MS = 5200;
+  const CAROUSEL_EASE: [number, number, number, number] = [0.22, 1, 0.36, 1];
+
+  const clearAutoplay = useCallback(() => {
+    if (!autoplayRef.current) return;
+    clearTimeout(autoplayRef.current);
+    autoplayRef.current = null;
+  }, []);
+
+  const scheduleAutoplay = useCallback(() => {
+    clearAutoplay();
+    autoplayRef.current = setTimeout(() => {
       setDirection(1);
       setActiveImage((prev) => (prev + 1) % slideCount);
-    }, 4200);
-    return () => clearInterval(timer);
-  }, [slideCount]);
+    }, AUTOPLAY_MS);
+  }, [clearAutoplay, slideCount]);
+
+  useEffect(() => {
+    scheduleAutoplay();
+    return clearAutoplay;
+  }, [activeImage, scheduleAutoplay, clearAutoplay]);
 
   const prevImage = () => {
     setDirection(-1);
@@ -53,6 +69,10 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
     setDirection(idx > activeImage ? 1 : -1);
     setActiveImage(idx);
   };
+
+  const handleHeroImageLoaded = useCallback((src: string) => {
+    setLoadedImages((prev) => (prev[src] ? prev : { ...prev, [src]: true }));
+  }, []);
 
   return (
     <section id="home" className="relative overflow-hidden">
@@ -135,7 +155,7 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  transition={{ duration: 0.45, ease: [0.4, 0, 0.2, 1] }}
+                  transition={{ duration: 0.55, ease: CAROUSEL_EASE }}
                   className="absolute inset-0"
                 >
                   <div className="relative h-full w-full">
@@ -145,7 +165,13 @@ export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
                       fill
                       sizes="(max-width: 768px) 100vw, 40vw"
                       className="object-cover"
+                      onLoad={() => handleHeroImageLoaded(heroImages[activeImage].src)}
                       priority
+                    />
+                    <div
+                      className={`pointer-events-none absolute inset-0 bg-gradient-to-br from-rose-100 via-amber-50 to-rose-100 transition-opacity duration-500 ${
+                        loadedImages[heroImages[activeImage].src] ? "opacity-0" : "opacity-100"
+                      }`}
                     />
                   </div>
                 </motion.div>

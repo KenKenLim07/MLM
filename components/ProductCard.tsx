@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import type { Product } from "@/data/products";
 
 type ProductCardProps = {
@@ -15,6 +16,12 @@ const pesoFormatter = new Intl.NumberFormat("en-PH", {
 });
 
 export default function ProductCard({ product }: ProductCardProps) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+
+  useEffect(() => {
+    setImageLoaded(false);
+  }, [product.imageSrc]);
+
   return (
     <motion.article
       whileHover={{ y: -6 }}
@@ -23,13 +30,21 @@ export default function ProductCard({ product }: ProductCardProps) {
     >
       <div className="relative h-56 overflow-hidden bg-gradient-to-br from-rose-100 via-amber-50 to-rose-50">
         {product.imageSrc ? (
-          <Image
-            src={product.imageSrc}
-            alt={product.imageLabel}
-            fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-          />
+          <>
+            <Image
+              src={product.imageSrc}
+              alt={product.imageLabel}
+              fill
+              sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+              className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+              onLoad={() => setImageLoaded(true)}
+            />
+            <div
+              className={`pointer-events-none absolute inset-0 bg-gradient-to-br from-rose-100 via-amber-50 to-rose-100 transition-opacity duration-500 ${
+                imageLoaded ? "opacity-0" : "opacity-100"
+              }`}
+            />
+          </>
         ) : (
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,255,255,0.65),_transparent_50%)]" />
         )}
