@@ -22,8 +22,9 @@ const glowWordTransition = {
 };
 
 const heroImages = [
-  { src: "/landingv6.PNG", alt: "MLM Skincare featured products set 1" },
-  { src: "/landingv5.jpg", alt: "MLM Skincare featured products set 2" },
+  { src: "/landingpage1.png", alt: "MLM Skincare featured products set 1" },
+  { src: "/landingpage2.PNG", alt: "MLM Skincare featured products set 2" },
+  { src: "/landingpage3.png", alt: "MLM Skincare featured products set 3" },
 ];
 
 export default function HeroSection({ brandName, orderUrl }: HeroSectionProps) {
